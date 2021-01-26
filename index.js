@@ -2,12 +2,10 @@ const shell = require('shelljs');
 const localtunnel = require("localtunnel");
 const express = require('express')
 const bodyParser = require('body-parser');
-const { Octokit } = require("@octokit/rest");
 const argv = require('minimist')(process.argv.slice(2));
 
 console.log(argv);
 
-const octokit = new Octokit({});
 const app = express();
 
 let dir = argv.dir;
