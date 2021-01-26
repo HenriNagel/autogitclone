@@ -1,16 +1,22 @@
+#!/usr/bin/env node
+
 const shell = require('shelljs');
 const localtunnel = require("localtunnel");
 const express = require('express')
 const bodyParser = require('body-parser');
 const argv = require('minimist')(process.argv.slice(2));
 
-console.log(argv);
+if(argv.d == undefined || argv.r == undefined || argv.u == undefined){
+   console.log("ERROR: Not enough Args");
+   process.kill(process.pid, 'SIGTERM');
+}
+
 
 const app = express();
 
-let dir = argv.dir;
-let user = argv.user;
-let repo = argv.repo;
+let dir = argv.d;
+let user = argv.u;
+let repo = argv.r;
 let cloneUrl = "https://github.com/" + user + "/" + repo + ".git";
 
 app.use(bodyParser.json());
