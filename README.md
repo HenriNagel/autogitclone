@@ -8,7 +8,7 @@ npm -g install autogitclone-0.1.1.tar
 The filename may vary
 ## Usage 
 ```bash
-autogc -u <username> -r <name of repository> -d <directory>
+autogc -u <username> -r <name of repository> -d <directory> &
 ```
 This will print a [localtunnel](https://www.npmjs.com/package/localtunnel) Url that has to be used as a Webhook (with standart settings) in the GitHub Repository. 
 
