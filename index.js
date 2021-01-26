@@ -32,7 +32,6 @@ app.post('/', function (req, res) {
 });
 
 app.listen(8080, function () {
-   console.log("listing Port:" , 8080);
 });
 
 (async () => {
