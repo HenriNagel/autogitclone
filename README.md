@@ -1,11 +1,11 @@
 # Autogitclone
 Automatically clone a GitHub repository into a desiered directory on your local machine or server when it gets modified
 ## Installation
-Download latest package (autogitclone-0.1.1.tar) and run 
+Download latest package (autogitclone-0.1.1.tar) and run:
 ```bash
 npm -g install autogitclone-0.1.1.tar
 ```
-Filename may vary
+The filename may vary
 ## Usage 
 ```bash
 autogc -u <username> -r <name of repository> -d <directory>
