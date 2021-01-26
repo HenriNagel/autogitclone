@@ -21,12 +21,27 @@ let cloneUrl = "https://github.com/" + user + "/" + repo + ".git";
 
 app.use(bodyParser.json());
 
+(async () => {
+
 app.post('/', function (req, res) {
     //console.log(JSON.stringify(req.headers));
     //console.log(req.body);
-    
-    shell.exec("rm -rf " + dir + "{*,.*}");
-    shell.exec("git clone " + cloneUrl + " " + dir);
+    let dirContent = shell.ls("-A", dir);
+    if(dirContent > 0){
+      let isGit = false;
+      for (let i = 0; i < dirContent.length; i++) {
+         if(dirContent[i] === ".git"){
+            isGit = true;
+         }
+      }
+      if(isGit){
+         console.log("ERROR: Dir empty nor git repository");
+         process.kill(process.pid, 'SIGTERM');
+      }
+    }
+
+    shell.exec("rm -rf " + dir + "{*,.*}", {silent: true});
+    shell.exec("git clone " + cloneUrl + " " + dir, {silent: true});
 
     res.send('OK');
 });
@@ -34,7 +49,7 @@ app.post('/', function (req, res) {
 app.listen(8080, function () {
 });
 
-(async () => {
+
    const tunnel = await localtunnel({ port: 8080 });
  
    console.log("Webhook URL:", tunnel.url);
